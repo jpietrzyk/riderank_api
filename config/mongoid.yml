@@ -1,0 +1,12 @@
+development:
+  clients:
+    default:
+      database: riderank
+      hosts:
+        - localhost:27017
+test:
+  clients:
+    default:
+      database: riderank_test
+      hosts:
+        - localhost:27017
