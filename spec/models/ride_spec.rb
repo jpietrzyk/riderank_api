@@ -22,8 +22,8 @@ describe Ride do
       expect(build(:ride, taxi_provider: nil)).to_not be_valid
     end
 
-    # it 'is invalid without user' do
-    #   expect(build(:ride, user: nil)).to_not be_valid
-    # end
+    it 'is invalid without user' do
+      expect(build(:ride, user: nil)).to_not be_valid
+    end
   end
 end
