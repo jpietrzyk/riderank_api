@@ -9,5 +9,5 @@ class TaxiProvider
   validates :name, presence: true
   validates :name, uniqueness: true
 
-  index({ name: 1 }, { unique: true, name: "name_index" })
+  index({ name: 1 }, unique: true, name: 'name_index')
 end

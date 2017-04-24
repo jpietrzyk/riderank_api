@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe 'POST /oauth/token (Resource Owner Password Credentials flow)' do
-
   def app
     OUTER_APP
   end
@@ -47,7 +46,7 @@ describe 'POST /oauth/token (Resource Owner Password Credentials flow)' do
         post authentication_url, valid_params.merge(
           grant_type: 'password',
           password: 'secret',
-          client_id:'blah-blah',
+          client_id: 'blah-blah',
           client_secret: application.secret
         )
 

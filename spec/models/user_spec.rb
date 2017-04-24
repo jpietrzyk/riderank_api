@@ -6,7 +6,6 @@ describe User do
   end
 
   describe 'validations' do
-
     it 'is invalid without email' do
       expect(build(:user, email: nil)).to_not be_valid
     end

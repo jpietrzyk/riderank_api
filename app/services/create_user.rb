@@ -1,5 +1,4 @@
 class CreateUser
-
   def initialize(params)
     @params = params
   end

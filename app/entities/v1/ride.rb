@@ -4,7 +4,7 @@ module Entities
       require_relative 'taxi_provider'
       require_relative 'user'
 
-      format_with(:iso_timestamp) { |dt| dt.iso8601 }
+      format_with(:iso_timestamp, &:iso8601)
 
       expose :id
       expose :start_coordinates

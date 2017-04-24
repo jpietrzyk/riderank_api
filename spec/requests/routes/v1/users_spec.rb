@@ -24,18 +24,18 @@ describe Routes::V1::Users do
   describe 'POST /v1/users' do
     context 'with valid attributes' do
       it 'returns HTTP status 201 - Created' do
-        post "/v1/users", valid_params
+        post '/v1/users', valid_params
         expect(last_response.status).to eq 201
       end
 
       it 'creates the user' do
-        post "/v1/users", valid_params
+        post '/v1/users', valid_params
         user = User.find_by(username: json['username'])
         expect(user).to_not eq nil
       end
 
       it 'creates the user with the specified attributes' do
-        post "/v1/users", valid_params
+        post '/v1/users', valid_params
         user = User.find_by(username: json['username'])
         expect(user.username).to eq attributes[:username]
         expect(user.email).to eq attributes[:email]
@@ -44,10 +44,9 @@ describe Routes::V1::Users do
     context 'with invalid attributes' do
       it 'responds with 400' do
         valid_params.delete(:username)
-        post "/v1/users", valid_params
+        post '/v1/users', valid_params
         expect(last_response.status).to eq 400
       end
     end
   end
-
 end

@@ -16,12 +16,12 @@ end
 
 # Load application
 [
-  %w(app models ** *.rb),
-  %w(app entities v* *.rb),
-  %w(app entities ** *.rb),
-  %w(app services ** *.rb),
-  %w(app routes v* *.rb),
-  %w(app routes ** *.rb),
+  %w[app models ** *.rb],
+  %w[app entities v* *.rb],
+  %w[app entities ** *.rb],
+  %w[app services ** *.rb],
+  %w[app routes v* *.rb],
+  %w[app routes ** *.rb]
 ].each do |pattern|
   Dir.glob(Config.root.join(*pattern)).each { |file| require file }
 end

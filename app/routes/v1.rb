@@ -29,7 +29,7 @@ module Routes
       helpers Grape::OAuth2::Helpers::AccessTokenHelpers
 
       # Inject token authentication middleware
-      use *Grape::OAuth2.middleware
+      use(*Grape::OAuth2.middleware)
 
       # Mount custom Grape::OAuth2 Token endpoint
       mount Routes::V1::OAuth2

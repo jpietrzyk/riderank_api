@@ -5,14 +5,13 @@ module Routes
         access_token_required!
       end
       resources :rides do
-
         desc 'Returns all rides'
         get do
           rides = current_resource_owner.rides
           present rides, with: Entities::V1::Ride
         end
 
-        desc "Return a specific ride"
+        desc 'Return a specific ride'
         params do
           requires :id, type: String
         end
@@ -31,11 +30,7 @@ module Routes
         end
         post do
           request = CreateRide.new(params).perform!
-          if request.success?
-            present request.response, with: Entities::V1::Ride
-          else
-            #
-          end
+          present request.response, with: Entities::V1::Ride if request.success?
         end
       end
     end

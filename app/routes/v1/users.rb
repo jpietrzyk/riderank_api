@@ -10,11 +10,7 @@ module Routes
         end
         post do
           request = CreateUser.new(params).perform!
-          if request.success?
-            present request.response, with: Entities::V1::User
-          else
-            #
-          end
+          present request.response, with: Entities::V1::User if request.success?
         end
       end
     end

@@ -6,7 +6,10 @@ class AccessToken
   field :client_id, type: BSON::ObjectId
 
   belongs_to :client, class_name: 'Application', foreign_key: :client_id
-  belongs_to :resource_owner, class_name: 'User', foreign_key: :resource_owner_id, optional: true
+  belongs_to :resource_owner,
+             class_name: 'User',
+             foreign_key: :resource_owner_id,
+             optional: true
 
   field :token, type: String
   field :refresh_token, type: String
@@ -15,8 +18,8 @@ class AccessToken
   field :expires_at, type: DateTime
   field :revoked_at, type: DateTime
 
-  index({ token: 1 }, { unique: true })
-  index({ refresh_token: 1 }, { unique: true, sparse: true })
+  index({ token: 1 }, unique: true)
+  index({ refresh_token: 1 }, unique: true, sparse: true)
 
   before_validation :generate_tokens, on: :create
   before_validation :setup_expiration, on: :create
@@ -64,10 +67,18 @@ class AccessToken
 
   def generate_tokens
     self.token = SecureRandom.hex(16)
-    self.refresh_token = SecureRandom.hex(16) if Grape::OAuth2.config.issue_refresh_token
+    self.refresh_token = SecureRandom.hex(16) if issue_refresh_token?
   end
 
   def setup_expiration
-    self.expires_at = Time.now.utc + Grape::OAuth2.config.access_token_lifetime if expires_at.nil?
+    self.expires_at = expiration_time if expires_at.nil?
+  end
+
+  def issue_refresh_token?
+    Grape::OAuth2.config.issue_refresh_token
+  end
+
+  def expiration_time
+    Time.now.utc + Grape::OAuth2.config.access_token_lifetime
   end
 end

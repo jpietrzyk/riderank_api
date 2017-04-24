@@ -6,7 +6,6 @@ describe Ride do
   end
 
   describe 'validations' do
-
     it 'is invalid without start location' do
       expect(build(:ride, start_coordinates: nil)).to_not be_valid
     end

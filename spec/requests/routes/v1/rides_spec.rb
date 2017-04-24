@@ -49,14 +49,14 @@ describe Routes::V1::Rides do
       it 'returns HTTP status 201 - Created' do
         access_token = AccessToken.create_for(application, user, 'read write')
 
-        post "/v1/rides", valid_params.merge(access_token: access_token.token)
+        post '/v1/rides', valid_params.merge(access_token: access_token.token)
         expect(last_response.status).to eq 201
       end
 
       it 'creates the ride' do
         access_token = AccessToken.create_for(application, user, 'read write')
 
-        post "/v1/rides", valid_params.merge(access_token: access_token.token)
+        post '/v1/rides', valid_params.merge(access_token: access_token.token)
         ride = Ride.find(json['id'])
         expect(ride).to_not eq nil
       end
@@ -64,7 +64,7 @@ describe Routes::V1::Rides do
       it 'creates the ride with the specified attributes' do
         access_token = AccessToken.create_for(application, user, 'read write')
 
-        post "/v1/rides", valid_params.merge(access_token: access_token.token)
+        post '/v1/rides', valid_params.merge(access_token: access_token.token)
         ride = Ride.find(json['id'])
         # expect(ride.start_coordinates).to eq attributes[:start_coordinates]
         # expect(ride.end_coordinates).to eq attributes[:end_coordinates]
@@ -77,7 +77,7 @@ describe Routes::V1::Rides do
     context 'with invalid attributes' do
       it 'responds with 400' do
         valid_params.delete(:email)
-        post "/v1/users", valid_params.to_json
+        post '/v1/users', valid_params.to_json
         expect(last_response.status).to eq 400
       end
     end

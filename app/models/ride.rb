@@ -13,6 +13,6 @@ class Ride
   validates :end_coordinates, presence: true
   validates :cost, presence: true
 
-  index({ start_coordinates: "2d" }, { min: -180, max: 180 })
-  index({ end_coordinates: "2d" }, { min: -180, max: 180 })
+  index({ start_coordinates: '2d' }, min: -180, max: 180)
+  index({ end_coordinates: '2d' }, min: -180, max: 180)
 end

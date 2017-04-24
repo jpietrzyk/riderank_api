@@ -10,7 +10,7 @@ class User
   field :username, type: String
   field :password_hash, type: String
 
-  index({ username: 1 }, { unique: true, name: "username_index" })
+  index({ username: 1 }, unique: true, name: 'username_index')
 
   has_many :rides
 
