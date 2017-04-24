@@ -1,4 +1,6 @@
 class Ride
+  require 'haversine'
+
   include Mongoid::Document
   include Mongoid::Timestamps
 
@@ -15,4 +17,8 @@ class Ride
 
   index({ start_coordinates: '2d' }, min: -180, max: 180)
   index({ end_coordinates: '2d' }, min: -180, max: 180)
+
+  def distance
+    Haversine.distance(start_coordinates, end_coordinates)
+  end
 end

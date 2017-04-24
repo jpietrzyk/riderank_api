@@ -6,7 +6,7 @@ describe Entities::V1::TaxiProvider do
       expect(described_class.find_exposure(:id)).to_not be_nil
     end
 
-    it 'expose start coordinates' do
+    it 'expose name' do
       expect(described_class.find_exposure(:name)).to_not be_nil
     end
   end

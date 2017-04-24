@@ -2,7 +2,7 @@ module Routes
   module V1
     class TaxiProviders < Grape::API
       resources :taxi_providers do
-        desc 'Returns all rides'
+        desc 'Returns all providers'
         get do
           taxi_providers = TaxiProvider.all
           present taxi_providers, with: Entities::V1::TaxiProvider

@@ -14,8 +14,8 @@ describe Routes::V1::Rides do
 
   let(:attributes) do
     {
-      start_coordinates: [0, 0],
-      end_coordinates: [1, 1],
+      start_coordinates: ['0', '0'],
+      end_coordinates: ['1', '1'],
       cost: 123,
       taxi_provider_id: taxi_provider.id.to_s,
       user_id: user.id.to_s
@@ -66,8 +66,8 @@ describe Routes::V1::Rides do
 
         post '/v1/rides', valid_params.merge(access_token: access_token.token)
         ride = Ride.find(json['id'])
-        # expect(ride.start_coordinates).to eq attributes[:start_coordinates]
-        # expect(ride.end_coordinates).to eq attributes[:end_coordinates]
+        expect(ride.start_coordinates).to eq attributes[:start_coordinates]
+        expect(ride.end_coordinates).to eq attributes[:end_coordinates]
         expect(ride.cost).to eq attributes[:cost]
         expect(ride.taxi_provider.id.to_s).to eq attributes[:taxi_provider_id]
         expect(ride.user.id.to_s).to eq attributes[:user_id]
