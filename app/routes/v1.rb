@@ -40,6 +40,8 @@ module Routes
       mount Routes::V1::Rides
       mount Routes::V1::TaxiProviders
       mount Routes::V1::Users
+
+      add_swagger_documentation
     end
   end
 end

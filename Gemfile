@@ -4,6 +4,9 @@ source 'https://rubygems.org'
 gem 'grape'
 gem 'grape-entity', '~> 0.5.1'
 gem 'grape_oauth2', git: 'https://github.com/nbulaj/grape_oauth2.git'
+
+gem 'grape-swagger'
+
 gem 'rack'
 
 gem 'bcrypt'
