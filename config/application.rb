@@ -21,7 +21,8 @@ end
   %w[app entities ** *.rb],
   %w[app services ** *.rb],
   %w[app routes v* *.rb],
-  %w[app routes ** *.rb]
+  %w[app routes ** *.rb],
+  %w[app stats ** *.rb]
 ].each do |pattern|
   Dir.glob(Config.root.join(*pattern)).each { |file| require file }
 end

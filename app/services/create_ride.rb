@@ -25,9 +25,10 @@ class CreateRide
 
   def valid_parameters
     {
-      start_coordinates: params[:start_coordinates],
-      end_coordinates: params[:end_coordinates],
+      start_coordinates: params[:start_coordinates].map(&:to_i),
+      end_coordinates: params[:end_coordinates].map(&:to_i),
       cost: params[:cost],
+      ride_date: params[:ride_date],
       taxi_provider: taxi_provider,
       user: user
     }

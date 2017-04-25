@@ -14,9 +14,10 @@ describe Routes::V1::Rides do
 
   let(:attributes) do
     {
-      start_coordinates: ['0', '0'],
-      end_coordinates: ['1', '1'],
+      start_coordinates: [0, 0],
+      end_coordinates: [1, 1],
       cost: 123,
+      ride_date: Date.today,
       taxi_provider_id: taxi_provider.id.to_s,
       user_id: user.id.to_s
     }

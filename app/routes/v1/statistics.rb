@@ -7,7 +7,22 @@ module Routes
           get do
             access_token_required! :write
             request = CreateBasicStats.new(current_resource_owner).perform!
-            present request.response, with: Entities::V1::BasicStatistic if request.success?
+            if request.success?
+              present request.response,
+                      with: Entities::V1::BasicStatistic
+            end
+          end
+        end
+
+        namespace :advanced do
+          desc 'Returns statistics'
+          get do
+            access_token_required! :write
+            request = CreateAdvancedStats.new(current_resource_owner).perform!
+            if request.success?
+              present request.response,
+                      with: Entities::V1::AdvancedStatistic
+            end
           end
         end
       end

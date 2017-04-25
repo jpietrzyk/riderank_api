@@ -12,24 +12,44 @@ class CreateBasicStats
   attr_reader :user
 
   def basic_stats
-    rides = rides_within_data_range(week_range)
-    Result.new(status: :success, response: { expenses: expenses(rides), distance: distance(rides) })
+    Result.new(status: :success, response: build_stats )
   end
 
-  def distance(rides)
-    rides.inject(0) { |sum, ride| sum + ride.distance.to_meters }
+  def build_stats
+    data = agregate_data.first
+    {
+      expenses: data.try(:expenses),
+      distance: data.try(:distance)
+    }
   end
 
-  def expenses(rides)
-    rides.inject(0) { |sum, ride| sum + ride.cost }
-  end
-
-  def rides_within_data_range(range)
-    Ride.where(created_at: range)
+  def agregate_data
+    user.rides.collection.aggregate(
+      [
+        {
+          '$match': {
+            created_at: {
+              '$gte': week_range[:first_day], '$lte': week_range[:last_day]
+              }
+            }
+          },
+          {
+            '$group': {
+            '_id': { day: { '$week': '$ride_date' } },
+            expenses: { '$sum': '$cost' },
+            distance: { '$sum': '$ride_distance' },
+            rides: { '$sum': 1 },
+          }
+        }
+      ]
+    )
   end
 
   def week_range
     d = Date.today
-    (d.beginning_of_week..d.end_of_week)
+    {
+      first_day: d.beginning_of_week,
+      last_day: d.end_of_week
+    }
   end
 end

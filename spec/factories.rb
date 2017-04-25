@@ -1,8 +1,9 @@
 FactoryGirl.define do
   factory :ride do
-    start_coordinates [54.0000, 54.000]
-    end_coordinates [54.1111, 54.1111]
+    start_coordinates [50.06465, 19.94498]
+    end_coordinates [50.067456, 19.988809]
     cost 2495
+    ride_date Date.current
     taxi_provider factory: :taxi_provider
     user factory: :user
   end

@@ -7,16 +7,16 @@ gem 'grape_oauth2', git: 'https://github.com/nbulaj/grape_oauth2.git'
 
 gem 'grape-swagger'
 
-gem 'rack'
-
 gem 'bcrypt'
 gem 'grape_token_auth'
+gem 'rack'
+gem 'warden'
+
 gem 'immutable_struct'
-gem 'mongoid'
 gem 'haversine'
+gem 'mongoid'
 gem 'rack-cors', require: 'rack/cors'
 gem 'rake'
-gem 'warden'
 
 group :development do
   gem 'pry'
