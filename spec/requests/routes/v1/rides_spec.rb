@@ -7,7 +7,7 @@ describe Routes::V1::Rides do
     OUTER_APP
   end
 
-  let(:application) { Application.create(name: 'App1') }
+  let(:application) { create(:application) }
   let(:taxi_provider) { create(:taxi_provider) }
   let(:user) { create(:user) }
   let(:ride) { create(:ride, user: user, taxi_provider: taxi_provider) }

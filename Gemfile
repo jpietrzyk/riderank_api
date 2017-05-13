@@ -21,6 +21,7 @@ gem 'rake'
 group :development do
   gem 'pry'
   gem 'shotgun'
+  gem 'racksh'
 end
 
 group :test do

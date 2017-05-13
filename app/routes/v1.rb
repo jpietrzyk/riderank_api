@@ -40,6 +40,7 @@ module Routes
       mount Routes::V1::Rides
       mount Routes::V1::TaxiProviders
       mount Routes::V1::Users
+      mount Routes::V1::Me
       mount Routes::V1::Statistics
 
       add_swagger_documentation
