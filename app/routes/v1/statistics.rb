@@ -22,6 +22,8 @@ module Routes
             if request.success?
               present request.response,
                       with: Entities::V1::AdvancedStatistic
+            else
+              error!({ message: request.response }, 418)
             end
           end
         end

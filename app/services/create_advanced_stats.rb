@@ -13,6 +13,9 @@ class CreateAdvancedStats
 
   def advanced_stats
     Result.new(status: :success, response: build_stats)
+
+  rescue => e
+    Result.new(status: :failure, response: e)
   end
 
   def build_stats
@@ -27,6 +30,7 @@ class CreateAdvancedStats
         providers: day['taxi_operators'].flatten
       )
     end
+    raise ApiError.new('Rides are empty') if days.empty?
     days
   end
 

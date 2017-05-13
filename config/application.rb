@@ -22,7 +22,8 @@ end
   %w[app services ** *.rb],
   %w[app routes v* *.rb],
   %w[app routes ** *.rb],
-  %w[app stats ** *.rb]
+  %w[app stats ** *.rb],
+  %w[app errors ** *.rb]
 ].each do |pattern|
   Dir.glob(Config.root.join(*pattern)).each { |file| require file }
 end

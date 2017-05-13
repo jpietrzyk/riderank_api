@@ -37,7 +37,15 @@ describe Routes::V1::Rides do
       expect(json['error']).to eq('forbidden')
     end
 
+    it 'returns empty error when no rides added' do
+      access_token = AccessToken.create_for(application, user, 'read write')
+      get '/v1/statistics/advanced', access_token: access_token.token
+
+      expect(last_response.status).to eq 418
+    end
+
     it 'returns statistics when user is authorized' do
+      create(:ride, user: user)
       access_token = AccessToken.create_for(application, user, 'read write')
       get '/v1/statistics/advanced', access_token: access_token.token
 
